@@ -1,0 +1,20 @@
+[Unit]
+Description=on_site
+Requires=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/zaitt/on_site
+ExecStart=/home/zaitt/.rvm/gems/default/wrappers/bundle exec rails server -e production
+
+User=zaitt
+Group=zaitt
+RestartSec=1s
+Restart=on-failture
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=on_site
+
+[Install]
+WantedBy=multi-user.target
